@@ -62,6 +62,7 @@ SELECT * FROM city LIMIT 25;
 SELECT * FROM city WHERE Name LIKE 'F%';
 -- solution
 SELECT * FROM city WHERE Name LIKE 'F%' LIMIT 25;
+-- COMPLETE
 
 -- Using COUNT and JOIN ... ON, get the number of cities in China.
 -- test correct tables
@@ -69,14 +70,12 @@ SELECT * FROM city;
 SELECT * FROM country;
 -- test count of cities
 SELECT COUNT(ID) FROM city;
--- tbd join city with country on countrycode - what follows is draft code pasted in
-SELECT *
-FROM table1 t1
-JOIN table2 t2 ON t1.field1=t2.field2;
--- and LEFT (or right of course is basically the same)
-SELECT o.order_id, c.customer_id, c.forename, c.address, o.total
-FROM customers c
-LEFT OUTER JOIN orders o ON c.customer_id=o.fk_customer_id;
+-- tbd join city with country on countrycode
+-- solution
+SELECT COUNT(ci.ID) FROM city ci
+JOIN country co ON ci.CountryCode = co.Code
+WHERE co.Name = "China";
+-- COMPLETE
 
 -- Using IS NOT NULL, ORDER BY, and LIMIT, which country has the lowest population? Discard non-zero populations.
 -- is not null
