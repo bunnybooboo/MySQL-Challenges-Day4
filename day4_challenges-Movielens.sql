@@ -9,15 +9,15 @@ ORDER BY release_date DESC;
 
 -- Without using LIMIT, list the titles of the movies with the lowest average rating.
 -- join movies with rating on movie_id
-SELECT title, rating FROM movies
-JOIN ratings ON movies.id = ratings.movie_id
--- this next line breaks to group order - not yet sure how to resolve
-WHERE rating < AVG(rating)
-ORDER BY title ASC;
-
+-- solution with some help from Max and Emilia to push me over the line
+SELECT m.title, AVG(r.rating) 
+FROM movies m
+JOIN ratings r ON m.id = r.movie_id
+GROUP BY r.movie_id
+ORDER BY AVG(r.rating) ASC;
 
 -- List the unique records for Sci-Fi movies where male 24-year-old students have given 5-star ratings.
-
+-- join films, genres, movies, occupations and ratings
 
 
 -- List the unique titles of each of the movies released on the most popular release day.

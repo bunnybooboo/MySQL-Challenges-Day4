@@ -1,20 +1,21 @@
 USE world;
 
--- Tasks
 -- Using COUNT, get the number of cities in the USA.
 -- test the correct table
 SELECT * FROM city;
 -- test the correct column
 SELECT COUNT(ID) FROM city;
--- test the full solution
+-- solution
 SELECT COUNT(ID) FROM city WHERE CountryCode = "USA";
+-- COMPLETE
 
 -- Find out the population and life expectancy for people in Argentina.
 -- test the correct table
 SELECT * FROM country;
 -- test the partial solution (in this case country total population)
--- test the solution
+-- solution
 SELECT Population, LifeExpectancy FROM country WHERE Code = "ARG";
+-- COMPLETE
 
 -- Using IS NOT NULL, ORDER BY, and LIMIT, which country has the highest life expectancy?
 -- is not null
@@ -28,6 +29,7 @@ SELECT * FROM country WHERE LifeExpectancy IS NOT NULL;
 -- solution
 SELECT * FROM country WHERE LifeExpectancy IS NOT NULL ORDER BY LifeExpectancy DESC LIMIT 1;
 -- ANDORRA
+-- COMPLETE
 
 -- Using JOIN ... ON, find the capital city of Spain.
 -- join country with city ON CountryCode and display country.capital(Capital)  
@@ -36,14 +38,20 @@ SELECT * FROM country;
 SELECT * FROM city;
 -- draft code
 -- TBD so far it pulls ALL names and capital as a number
-SELECT ci.Name, co.Capital
+-- solution
+SELECT ci.Name, co.Name
 FROM city ci
-JOIN country co ON ci.CountryCode = co.Code;
+JOIN country co ON ci.ID = co.Capital
+WHERE co.Name = "Spain";
+-- COMPLETE
 
 -- Using JOIN ... ON, list all the languages spoken in the Southeast Asia region.
-SELECT o.order_id, c.customer_id, c.forename, c.address
-FROM customers c
-JOIN orders o ON c.customer_id=o.fk_customer_id;
+-- join 
+SELECT DISTINCT cl.`Language`, co.Region
+FROM countrylanguage cl
+JOIN country co ON cl.CountryCode = co.Code
+WHERE co.Region = "Southeast Asia";
+-- COMPLETE
 
 -- Using a single query, list 25 cities around the world that start with the letter F.
 -- test the correct table
